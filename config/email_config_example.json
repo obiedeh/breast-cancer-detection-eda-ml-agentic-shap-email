@@ -1,0 +1,13 @@
+{
+  "mode": "simulate",
+  "smtp_host": "smtp.example.com",
+  "smtp_port": 587,
+  "use_tls": true,
+  "username": "your_email@example.com",
+  "password": "YOUR_PASSWORD_OR_APP_TOKEN",
+  "from_email": "your_email@example.com",
+  "to_emails": [
+    "recipient1@example.com"
+  ]
+}
+
