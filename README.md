@@ -1,160 +1,85 @@
 # Agentic Medical AI Explainability
 
-Explainable and agentic clinical decision-support workflows for interpretable medical AI systems.
+Explainable and operational medical AI workflows with human-in-the-loop review.
 
-This repository explores how machine learning, explainability, and operational AI workflows can support transparent clinical reasoning and human-in-the-loop medical decision support.
+This repository is structured as a production-style Python package for reproducible model training, evaluation, explainability, and markdown reporting. The included workflow uses the sklearn Wisconsin Breast Cancer dataset as a compact engineering demonstration.
 
-The project combines:
+## Safety Boundary
 
-- clinical classification workflows
-- explainable AI with SHAP
-- operational reporting pipelines
-- synthetic patient evaluation scenarios
-- agentic recommendation workflows
-- interpretable model analysis
+This project is for engineering and research demonstration only.
 
-The focus is not simply predicting disease risk.
+It does not provide medical diagnosis, treatment instructions, autonomous clinical recommendations, or doctor replacement functionality. Model outputs and explanations are artifacts for qualified human review.
 
-The focus is understanding:
+## Capabilities
 
-- why predictions are made
-- which features drive clinical risk
-- how explainability improves trust
-- how operational AI workflows can support review processes
-- how agentic systems can summarize and communicate model findings responsibly
-
----
-
-## Engineering Direction
-
-This repository is evolving toward a broader explainable medical AI workflow centered on:
-
-- interpretable clinical ML systems
-- SHAP-based explainability
-- human-in-the-loop review workflows
-- operational AI summaries
-- agentic reporting pipelines
-- transparent model reasoning
-
-The project is designed as an engineering workflow for explainability and operational support, not as a replacement for medical professionals.
-
----
-
-## Current Capabilities
-
-### Clinical ML Workflow
-
-- benign vs malignant classification pipeline
-- model benchmarking and comparison
-- train/test evaluation
-- cross-validation workflows
-- reproducible classification experiments
-
-### Explainability
-
-- global SHAP feature importance
-- local patient-level explanation workflows
-- feature attribution analysis
-- interpretable prediction summaries
-
-### Operational Workflow Concepts
-
-- synthetic patient test scenarios
-- structured result summaries
-- simulated operational notifications
-- agentic-style orchestration concepts
-
----
-
-## High-Level Workflow
-
-```text
-Clinical Dataset
-        |
-        v
-Feature Analysis and Validation
-        |
-        v
-Model Training and Benchmarking
-        |
-        v
-Explainability Layer
-(SHAP feature attribution)
-        |
-        v
-Operational Summary Generation
-        |
-        v
-Human Review Workflow
-```
-
----
+- Load the sklearn breast cancer dataset
+- Validate tabular schema and target values
+- Create reproducible stratified train/test splits
+- Train baseline classifiers
+- Select a champion model by ROC AUC
+- Calculate standard classification metrics
+- Generate global feature importance and local sample explanations
+- Write markdown reports to `reports/`
 
 ## Repository Structure
 
 ```text
 .
-├── src/
-│   ├── data_agent.py
-│   ├── modeling_agent.py
-│   ├── explainability_agent.py
-│   ├── email_agent.py
-│   └── synthetic_test_lab.py
-├── notebooks/
-├── config/
-├── requirements.txt
-├── README.md
-└── LICENSE
+├── configs/default.yaml
+├── docs/ARCHITECTURE.md
+├── reports/
+│   ├── README.md
+│   ├── sample_explainability_report.md
+│   └── sample_model_report.md
+├── src/medical_ai_explainability/
+│   ├── cli.py
+│   ├── data.py
+│   ├── evaluation.py
+│   ├── explainability.py
+│   ├── features.py
+│   ├── models.py
+│   ├── reporting.py
+│   └── schema.py
+├── tests/
+├── Makefile
+└── pyproject.toml
 ```
 
----
+## Quickstart
 
-## Why This Matters
+```bash
+make install-dev
+make test
+make run-sample
+```
 
-Medical AI systems increasingly require:
+The sample workflow writes:
 
-- transparent predictions
-- explainability
-- human oversight
-- reproducible workflows
-- operational reporting
-- traceable reasoning paths
+```text
+reports/generated/model_report.md
+reports/generated/explainability_report.md
+```
 
-Black-box predictions alone are often insufficient in clinical environments.
+You can also run the CLI directly:
 
-This repository explores how explainability and structured operational workflows can improve trust and interpretability in applied medical AI systems.
+```bash
+medical-ai-explainability run-sample --config configs/default.yaml
+```
 
----
+## Development Targets
 
-## Planned Extensions
+```bash
+make install      # install package
+make install-dev  # install package with dev/explainability/notebook extras
+make test         # run pytest
+make run-sample   # run reproducible workflow and write reports
+make lint         # run ruff
+```
 
-- retrieval-augmented medical reporting
-- multimodal explainability workflows
-- uncertainty-aware summaries
-- clinician-facing operational dashboards
-- structured recommendation pipelines
-- lightweight edge inference experiments
-- additional explainability techniques beyond SHAP
+## Architecture
 
----
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the package map and Mermaid workflow diagram.
 
 ## Positioning
 
-This repository supports a broader engineering focus around:
-
-- Agentic AI
-- explainable machine learning
-- operational AI systems
-- interpretable decision-support workflows
-- human-in-the-loop AI
-- deployable AI systems with transparent reasoning
-
----
-
-## Important Note
-
-This repository is for research and engineering exploration only.
-
-It is not intended for real clinical diagnosis, treatment decisions, or autonomous medical recommendations.
-
-All outputs should remain subject to qualified medical review.
+The repo focuses on explainable and operational medical AI workflows with human-in-the-loop review: reproducibility, transparent metrics, reviewable feature attributions, and report artifacts that keep clinical claims grounded.

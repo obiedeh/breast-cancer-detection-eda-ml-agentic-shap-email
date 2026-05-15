@@ -1,11 +1,11 @@
-
 numpy
 pandas
+pyyaml
 scikit-learn
-xgboost
+
+# Optional explainability and notebook extras:
 shap
 matplotlib
 seaborn
 jupyter
 ipykernel
-

@@ -5,6 +5,9 @@ __pycache__/
 *.pyo
 *.pyd
 *.pkl
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
 
 # Virtual environments
 .venv/
@@ -35,4 +38,3 @@ logs/
 *.log
 outputs/
 figures/
-

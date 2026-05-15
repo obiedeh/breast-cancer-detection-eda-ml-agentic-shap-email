@@ -1,0 +1,15 @@
+random_state: 42
+
+data:
+  dataset: sklearn_breast_cancer
+  test_size: 0.2
+
+model_selection:
+  metric: roc_auc
+
+explainability:
+  top_k: 8
+  sample_index: 0
+
+reports:
+  output_dir: reports/generated
