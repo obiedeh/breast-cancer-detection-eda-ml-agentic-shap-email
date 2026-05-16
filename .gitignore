@@ -6,8 +6,11 @@ __pycache__/
 *.pyd
 *.pkl
 *.egg-info/
+dist/
+build/
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 
 # Virtual environments
 .venv/
@@ -28,8 +31,9 @@ env/
 Thumbs.db
 
 # Local configuration / secrets
-config/email_config.json
 .env
+.env.*
+!.env.example
 *.secret
 *.key
 
