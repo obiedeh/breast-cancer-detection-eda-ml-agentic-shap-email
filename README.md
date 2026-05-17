@@ -51,16 +51,12 @@ It does not provide medical diagnosis, treatment instructions, autonomous clinic
 
 ## Quickstart
 
+Primary target: Linux, including Ubuntu CI and Linux containers. This repo is CPU-oriented and does not require Jetson-specific hardware.
+
 ```bash
 make install-dev
 make test
 make run-sample
-```
-
-On Windows PowerShell, use the virtual environment Python directly after installation:
-
-```powershell
-.\.venv\Scripts\python.exe -m medical_ai_explainability.cli run-sample --config configs/default.yaml
 ```
 
 The sample workflow writes reproducible proof artifacts:
