@@ -75,6 +75,27 @@ reports/generated/roc_curve.svg
 reports/generated/feature_importance.svg
 ```
 
+For the full local verification pass:
+
+```bash
+make verify
+```
+
+## Docker
+
+Build and run the reproducible sample workflow:
+
+```bash
+docker build -t medical-ai-explainability:latest .
+docker run --rm medical-ai-explainability:latest
+```
+
+Run the test suite inside the container:
+
+```bash
+docker run --rm medical-ai-explainability:latest python -m pytest -q
+```
+
 ## Development Targets
 
 ```bash
@@ -83,6 +104,8 @@ make install-dev  # install package with dev/explainability/notebook extras
 make test         # run pytest
 make run-sample   # run reproducible workflow and write reports
 make lint         # run ruff
+make typecheck    # run mypy
+make verify       # lint, typecheck, test, run sample, validate artifacts
 ```
 
 ## Deliverables

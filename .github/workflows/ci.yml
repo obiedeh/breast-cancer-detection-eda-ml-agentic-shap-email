@@ -37,3 +37,23 @@ jobs:
         run: mypy src/medical_ai_explainability
       - name: Run tests
         run: python -m pytest -q
+      - name: Run sample workflow
+        run: python -m medical_ai_explainability.cli run-sample --config configs/default.yaml
+      - name: Validate generated artifacts
+        run: |
+          test -s reports/generated/model_report.md
+          test -s reports/generated/explainability_report.md
+          test -s reports/generated/model_card.md
+          test -s reports/generated/metrics.json
+          test -s reports/generated/confusion_matrix.svg
+          test -s reports/generated/roc_curve.svg
+          test -s reports/generated/feature_importance.svg
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t medical-ai-explainability:ci .
+      - name: Run sample workflow in Docker
+        run: docker run --rm medical-ai-explainability:ci

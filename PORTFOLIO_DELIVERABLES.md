@@ -7,9 +7,10 @@ This repository is scoped to a narrow, credible deliverable: a deterministic med
 ```bash
 make test
 make run-sample
+make verify
 ```
 
-The CI workflow also runs linting, type checks, and pytest.
+The CI workflow runs linting, type checks, pytest, the sample pipeline, artifact validation, and a Docker build/run smoke test.
 
 ## Proof Artifacts
 
@@ -28,3 +29,7 @@ The CI workflow also runs linting, type checks, and pytest.
 The repo proves reproducible engineering behavior: data loading, schema validation, deterministic splitting, model comparison, explainability, reports, tests, and generated outputs.
 
 It does not claim clinical validity, clinical deployment readiness, or autonomous medical decision-making.
+
+## Deployment Evidence
+
+The Docker image runs the same sample workflow as local development. It is intentionally a reproducible engineering container, not a clinical service or API.

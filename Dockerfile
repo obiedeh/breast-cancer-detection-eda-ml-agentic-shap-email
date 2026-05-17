@@ -17,14 +17,14 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-COPY requirements.txt pyproject.toml ./
+COPY requirements.txt pyproject.toml README.md LICENSE ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ ./src/
 COPY tests/ ./tests/
 COPY configs/ ./configs/
 
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir -e ".[dev]"
 
 VOLUME ["/app/reports"]
 
