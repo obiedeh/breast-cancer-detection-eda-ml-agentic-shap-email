@@ -96,8 +96,31 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _load_config(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        raise FileNotFoundError(f"Config file not found: {path}")
     with path.open("r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle)
+        config = yaml.safe_load(handle)
+    _validate_config(config, path)
+    return config
+
+
+_REQUIRED_CONFIG_KEYS: dict[str, list[str]] = {
+    "root": ["random_state", "data", "model_selection", "explainability", "reports"],
+    "data": ["test_size"],
+    "model_selection": ["metric"],
+    "explainability": ["top_k", "sample_index"],
+    "reports": ["output_dir"],
+}
+
+
+def _validate_config(config: dict[str, Any], path: Path) -> None:
+    for key in _REQUIRED_CONFIG_KEYS["root"]:
+        if key not in config:
+            raise ValueError(f"Config '{path}' is missing required key: '{key}'")
+    for section in ("data", "model_selection", "explainability", "reports"):
+        for key in _REQUIRED_CONFIG_KEYS[section]:
+            if key not in config[section]:
+                raise ValueError(f"Config '{path}' is missing '{section}.{key}'")
 
 
 if __name__ == "__main__":
