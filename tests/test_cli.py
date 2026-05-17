@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from medical_ai_explainability.cli import _load_config, _validate_config
+from medical_ai_explainability.cli import _load_config
 
 
 def _write_config(tmp_path: Path, data: dict) -> Path:

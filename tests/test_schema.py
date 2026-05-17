@@ -1,4 +1,3 @@
-import pandas as pd
 import pytest
 
 from medical_ai_explainability.data import load_breast_cancer_dataset
@@ -60,4 +59,8 @@ def test_schema_validation_rejects_mismatched_row_count():
     dataset = load_breast_cancer_dataset()
 
     with pytest.raises(ValueError, match="row counts differ"):
-        validate_schema(dataset.features, dataset.target.iloc[:10], TabularSchema(dataset.feature_names))
+        validate_schema(
+            dataset.features,
+            dataset.target.iloc[:10],
+            TabularSchema(dataset.feature_names),
+        )

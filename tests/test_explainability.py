@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import pytest
 
 from medical_ai_explainability.data import load_breast_cancer_dataset, split_dataset

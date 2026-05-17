@@ -45,3 +45,11 @@ figures/
 
 # Generated reports
 reports/generated/
+!reports/generated/
+!reports/generated/model_report.md
+!reports/generated/explainability_report.md
+!reports/generated/model_card.md
+!reports/generated/metrics.json
+!reports/generated/confusion_matrix.svg
+!reports/generated/roc_curve.svg
+!reports/generated/feature_importance.svg

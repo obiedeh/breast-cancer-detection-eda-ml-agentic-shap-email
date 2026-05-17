@@ -124,9 +124,10 @@ def _try_shap_values(
     background: pd.DataFrame,
 ) -> np.ndarray | None:
     try:
-        import shap  # type: ignore
+        import shap
 
-        explainer = shap.Explainer(estimator.predict_proba, background)
+        estimator_any: Any = estimator
+        explainer = shap.Explainer(estimator_any.predict_proba, background)
         values = explainer(sample.to_frame().T)
         class_values = values.values
         if class_values.ndim == 3:

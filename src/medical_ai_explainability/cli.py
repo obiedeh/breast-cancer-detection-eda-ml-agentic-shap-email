@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -65,12 +65,19 @@ def run_sample(config_path: Path, output_dir: Path | None = None) -> dict[str, A
         global_importance=global_importance,
         local_explanation=local,
         sample_id=str(sample.name),
+        X_test=split.X_test,
+        y_test=split.y_test,
     )
     return {
         "champion": champion.name,
         "metrics": champion.metrics,
         "model_report": str(artifacts.model_report),
         "explainability_report": str(artifacts.explainability_report),
+        "model_card": str(artifacts.model_card),
+        "metrics_json": str(artifacts.metrics_json),
+        "confusion_matrix": str(artifacts.confusion_matrix_svg),
+        "roc_curve": str(artifacts.roc_curve_svg),
+        "feature_importance": str(artifacts.feature_importance_svg),
     }
 
 
@@ -92,6 +99,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ROC AUC: {result['metrics']['roc_auc']:.3f}")
         print(f"Model report: {result['model_report']}")
         print(f"Explainability report: {result['explainability_report']}")
+        print(f"Model card: {result['model_card']}")
+        print(f"Metrics JSON: {result['metrics_json']}")
+        print(f"Confusion matrix: {result['confusion_matrix']}")
+        print(f"ROC curve: {result['roc_curve']}")
+        print(f"Feature importance: {result['feature_importance']}")
     return 0
 
 
@@ -101,7 +113,7 @@ def _load_config(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         config = yaml.safe_load(handle)
     _validate_config(config, path)
-    return config
+    return cast(dict[str, Any], config)
 
 
 _REQUIRED_CONFIG_KEYS: dict[str, list[str]] = {

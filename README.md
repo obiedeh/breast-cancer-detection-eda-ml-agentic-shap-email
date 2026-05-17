@@ -1,8 +1,8 @@
 # Agentic Medical AI Explainability
 
-Explainable and operational medical AI workflows with human-in-the-loop review.
+Explainable, reproducible medical AI workflow for model benchmarking, feature attribution, and human-review reports.
 
-This repository is structured as a production-style Python package for reproducible model training, evaluation, explainability, and markdown reporting. The included workflow uses the sklearn Wisconsin Breast Cancer dataset as a compact engineering demonstration.
+This repository is a focused engineering project, not a fake hospital platform. The included workflow uses the sklearn Wisconsin Breast Cancer dataset as a compact, deterministic benchmark for training, evaluating, explaining, and reporting on tabular classification models.
 
 ## Safety Boundary
 
@@ -10,39 +10,43 @@ This project is for engineering and research demonstration only.
 
 It does not provide medical diagnosis, treatment instructions, autonomous clinical recommendations, or doctor replacement functionality. Model outputs and explanations are artifacts for qualified human review.
 
-## Capabilities
+## What Works Now
 
 - Load the sklearn breast cancer dataset
 - Validate tabular schema and target values
 - Create reproducible stratified train/test splits
 - Train baseline classifiers
 - Select a champion model by ROC AUC
-- Calculate standard classification metrics
+- Calculate holdout classification metrics
 - Generate global feature importance and local sample explanations
-- Write markdown reports to `reports/`
+- Write markdown reports, a model card, machine-readable metrics, and SVG plots
+- Run tests, linting, and type checks through standard Python tooling
 
 ## Repository Structure
 
 ```text
 .
-├── configs/default.yaml
-├── docs/ARCHITECTURE.md
-├── reports/
-│   ├── README.md
-│   ├── sample_explainability_report.md
-│   └── sample_model_report.md
-├── src/medical_ai_explainability/
-│   ├── cli.py
-│   ├── data.py
-│   ├── evaluation.py
-│   ├── explainability.py
-│   ├── features.py
-│   ├── models.py
-│   ├── reporting.py
-│   └── schema.py
-├── tests/
-├── Makefile
-└── pyproject.toml
+|-- configs/default.yaml
+|-- docs/ARCHITECTURE.md
+|-- reports/
+|   |-- README.md
+|   |-- generated/
+|   |-- sample_explainability_report.md
+|   `-- sample_model_report.md
+|-- src/medical_ai_explainability/
+|   |-- cli.py
+|   |-- data.py
+|   |-- evaluation.py
+|   |-- explainability.py
+|   |-- features.py
+|   |-- models.py
+|   |-- reporting.py
+|   `-- schema.py
+|-- tests/
+|-- MODEL_CARD.md
+|-- PORTFOLIO_DELIVERABLES.md
+|-- Makefile
+`-- pyproject.toml
 ```
 
 ## Quickstart
@@ -53,17 +57,22 @@ make test
 make run-sample
 ```
 
-The sample workflow writes:
+On Windows PowerShell, use the virtual environment Python directly after installation:
+
+```powershell
+.\.venv\Scripts\python.exe -m medical_ai_explainability.cli run-sample --config configs/default.yaml
+```
+
+The sample workflow writes reproducible proof artifacts:
 
 ```text
 reports/generated/model_report.md
 reports/generated/explainability_report.md
-```
-
-You can also run the CLI directly:
-
-```bash
-medical-ai-explainability run-sample --config configs/default.yaml
+reports/generated/model_card.md
+reports/generated/metrics.json
+reports/generated/confusion_matrix.svg
+reports/generated/roc_curve.svg
+reports/generated/feature_importance.svg
 ```
 
 ## Development Targets
@@ -75,6 +84,12 @@ make test         # run pytest
 make run-sample   # run reproducible workflow and write reports
 make lint         # run ruff
 ```
+
+## Deliverables
+
+See [PORTFOLIO_DELIVERABLES.md](PORTFOLIO_DELIVERABLES.md) for the credibility checklist and generated output map.
+
+See [MODEL_CARD.md](MODEL_CARD.md) for intended use, limitations, evaluation approach, and safety boundaries.
 
 ## Architecture
 

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="340" viewBox="0 0 420 340">
+<rect width="420" height="340" fill="white" />
+<text x="210" y="32" text-anchor="middle" font-size="22" font-weight="bold">Confusion Matrix</text>
+<text x="210" y="320" text-anchor="middle" font-size="14">Predicted label</text>
+<text x="22" y="175" text-anchor="middle" font-size="14" transform="rotate(-90 22 175)">
+Actual label</text>
+<text x="145" y="75" text-anchor="middle" font-size="13">Pred 0</text>
+<text x="295" y="75" text-anchor="middle" font-size="13">Pred 1</text>
+<text x="58" y="140" text-anchor="middle" font-size="13">Actual 0</text>
+<text x="58" y="260" text-anchor="middle" font-size="13">Actual 1</text>
+<rect x="80" y="90" width="130" height="90" fill="rgb(169,169,255)" stroke="#1f2937" /><text x="145" y="128" text-anchor="middle" font-size="18">TN</text><text x="145" y="154" text-anchor="middle" font-size="22" font-weight="bold">41</text>
+<rect x="230" y="90" width="130" height="90" fill="rgb(253,253,255)" stroke="#1f2937" /><text x="295" y="128" text-anchor="middle" font-size="18">FP</text><text x="295" y="154" text-anchor="middle" font-size="22" font-weight="bold">1</text>
+<rect x="80" y="210" width="130" height="90" fill="rgb(253,253,255)" stroke="#1f2937" /><text x="145" y="248" text-anchor="middle" font-size="18">FN</text><text x="145" y="274" text-anchor="middle" font-size="22" font-weight="bold">1</text>
+<rect x="230" y="210" width="130" height="90" fill="rgb(105,105,255)" stroke="#1f2937" /><text x="295" y="248" text-anchor="middle" font-size="18">TP</text><text x="295" y="274" text-anchor="middle" font-size="22" font-weight="bold">71</text>
+</svg>

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -76,8 +77,9 @@ def train_baselines(
 
     results: list[ModelResult] = []
     for name, estimator in build_baseline_models(feature_names, random_state).items():
-        estimator.fit(X_train, y_train)
-        y_pred = estimator.predict(X_test)
+        estimator_any: Any = estimator
+        estimator_any.fit(X_train, y_train)
+        y_pred = estimator_any.predict(X_test)
         y_score = predict_positive_class_probability(estimator, X_test)
         metrics = calculate_metrics(y_test, y_pred, y_score)
         results.append(ModelResult(name=name, estimator=estimator, metrics=metrics))
@@ -87,11 +89,12 @@ def train_baselines(
 def predict_positive_class_probability(estimator: object, features: pd.DataFrame) -> pd.Series:
     """Return probability-like scores for target class 1 when available."""
 
+    estimator_any: Any = estimator
     if hasattr(estimator, "predict_proba"):
-        return pd.Series(estimator.predict_proba(features)[:, 1], index=features.index)
+        return pd.Series(estimator_any.predict_proba(features)[:, 1], index=features.index)
     if hasattr(estimator, "decision_function"):
-        return pd.Series(estimator.decision_function(features), index=features.index)
-    return pd.Series(estimator.predict(features), index=features.index)
+        return pd.Series(estimator_any.decision_function(features), index=features.index)
+    return pd.Series(estimator_any.predict(features), index=features.index)
 
 
 def select_champion(results: list[ModelResult], metric: str = "roc_auc") -> ModelResult:
